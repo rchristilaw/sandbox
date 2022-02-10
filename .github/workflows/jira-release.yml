@@ -32,4 +32,4 @@ jobs:
         run: |
           echo Parse Release Notes
           echo ${{ github.event.release.body }} >> temp.txt
-          grep -o 'EB-[0-9]*' temp.txt | tr '\n' ','
+          echo grep -o 'EB-[0-9]*' temp.txt | tr '\n' ','
