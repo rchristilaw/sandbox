@@ -31,4 +31,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo grep -o 'EB-[0-9]*' ${{ github.event.release.body }} | tr '\n' ','
+          grep -o 'EB-[0-9]*' ${{ github.event.release.body }} | tr '\n' ','
