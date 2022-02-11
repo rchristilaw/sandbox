@@ -31,7 +31,12 @@ jobs:
       - name: Run a multi-line script
         id: parse-release-notes
         run: |
-          tickets=$(echo '${{ github.event.release.body }}' | grep -o 'EB-[0-9]*' | tr '\n' ',')
+          rawNotes=$(echo '${{ github.event.release.body }}')
+          echo $rawNotes
+          
+          tickets=$(echo $rawNotes | grep -o 'EB-[0-9]*' | tr '\n' ',')
+          echo $tickets
+          
           echo "::set-output name=tickets::${tickets}'"
             
       # Runs a set of commands using the runners shell
