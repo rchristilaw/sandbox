@@ -41,6 +41,6 @@ jobs:
           subdomain: ryanchristilaw
           jira_project: PB
           release_name: ${{ github.event.release.name }}
-          create: true
-          release: false
-#          tickets: ${{ steps.parse-release-notes.outputs.tickets }}
+          create: 'true'
+          release: 'false'
+          tickets: ${{ steps.parse-release-notes.outputs.tickets }}
