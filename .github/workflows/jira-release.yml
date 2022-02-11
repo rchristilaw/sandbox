@@ -43,4 +43,4 @@ jobs:
           release_name: ${{ github.event.release.name }}
           create: true
           release: false
-          tickets: ${{ steps.parse-release-notes.outputs.tickets }}
+#          tickets: ${{ steps.parse-release-notes.outputs.tickets }}
