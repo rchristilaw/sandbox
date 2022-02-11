@@ -24,10 +24,23 @@ jobs:
         id: parse-release-notes
         run: |
           releaseBody=$(echo '${{ github.event.release.body }}')
-          echo "::set-output name=tickets::$(echo $releaseBody | grep -o 'EB-[0-9]*' | tr '\n' ',')"
+          echo "::set-output name=tickets::$(echo $releaseBody | grep -o 'PB-[0-9]*' | tr '\n' ',')"
             
       # Runs a set of commands using the runners shell
       - name: Send ticket numbers to JIRA release
         run: |
           echo Tickets associated with release
           echo ${{ steps.parse-release-notes.outputs.tickets }}
+          
+          
+      - name: Release Jira Version
+        uses: armona/jira-release-action@latest
+        with:
+          email: ${{ secrets.JIRA_EMAIL }}
+          api-token: ${{ secrets.JIRA_TOKEN }}
+          subdomain: ryanchristilaw
+          key: PB
+          release_name: ${{ github.event.release.name }}
+          create: true
+          release: false
+          tickets: ${{ steps.parse-release-notes.outputs.tickets }}
