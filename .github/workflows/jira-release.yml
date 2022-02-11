@@ -37,6 +37,7 @@ jobs:
           tickets=$(echo $rawNotes | grep -o 'EB-[0-9]*' | tr '\n' ',')
           echo $tickets
           
+          echo "TICKETS=$(echo $rawNotes | grep -o 'EB-[0-9]*' | tr '\n' ',')" >> $GITHUB_ENV
           echo "::set-output name=tickets::$(echo $rawNotes | grep -o 'EB-[0-9]*' | tr '\n' ',')'"
 #          echo "::set-output name=tickets::$(echo $tickets)'"
             
@@ -45,3 +46,4 @@ jobs:
         run: |
           echo Parse Release Notes
           echo ${{ steps.parse-release-notes.output.tickets }}
+          echo ${{ env.TICKETS }}
