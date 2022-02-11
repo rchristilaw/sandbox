@@ -31,7 +31,7 @@ jobs:
       - name: Run a multi-line script
         id: parse-release-notes
         run: |
-          echo ${{ github.event.release.body }} > temp.txt
+          echo '${{ github.event.release.body }}' > temp.txt
           tickets=$(grep -o 'EB-[0-9]*' temp.txt | tr '\n' ',')
           echo "::set-output name=tickets::${tickets}'"
             
