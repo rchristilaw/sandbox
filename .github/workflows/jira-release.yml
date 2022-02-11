@@ -45,5 +45,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Parse Release Notes
-          echo ${{ steps.parse-release-notes.output.tickets }}
+          echo ${{ steps.parse-release-notes.outputs.tickets }}
           echo ${{ env.TICKETS }}
