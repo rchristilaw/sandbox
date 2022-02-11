@@ -9,7 +9,7 @@ on:
 
 env:
   JIRA_SUBDOMAIN: ryanchristilaw
-  JIRA_PROJECT_KEY: EP
+  JIRA_PROJECT_KEY: PB
   RELEASE_NAME_PREFIX: Backend
 
 jobs:
