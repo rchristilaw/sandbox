@@ -19,7 +19,7 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+#       - uses: actions/checkout@v2
         
       # Parse release body for release notes and extract JIRA ticket numbers
       # Search for regex EB-XXXX and then outputs the ticket numbers separated by commas
@@ -44,5 +44,5 @@ jobs:
           jira_project: ${{ env.JIRA_PROJECT_KEY }}
           release_name: ${{ env.RELEASE_NAME_PREFIX }} ${{ github.event.release.name }}
           create: 'true'
-          release: 'false'
+#           release: 'false'
           tickets: ${{ steps.parse-release-notes.outputs.tickets }}
