@@ -37,7 +37,7 @@ jobs:
         uses: armona/jira-release-actions@v2.0.6
         with:
           email: ${{ secrets.JIRA_EMAIL }}
-          api-token: ${{ secrets.JIRA_TOKEN }}
+          api_token: ${{ secrets.JIRA_TOKEN }}
           subdomain: ryanchristilaw
           jira_project: PB
           release_name: ${{ github.event.release.name }}
