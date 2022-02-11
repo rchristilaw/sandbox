@@ -39,7 +39,7 @@ jobs:
           email: ${{ secrets.JIRA_EMAIL }}
           api-token: ${{ secrets.JIRA_TOKEN }}
           subdomain: ryanchristilaw
-          key: PB
+          jira_project: PB
           release_name: ${{ github.event.release.name }}
           create: true
           release: false
