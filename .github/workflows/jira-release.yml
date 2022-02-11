@@ -1,13 +1,16 @@
-# This is a basic workflow to help you get started with Actions
+# Action to send release to JIRA which will associate tickets in release notes to release version
+name: jira-release
 
-name: Release Notes
-
-# Controls when the workflow will run
 on:
   # Triggers the workflow on publish of Release in Pre-release state
   release:
     types: [ prereleased ]
 
+
+env:
+  JIRA_SUBDOMAIN: ryanchristilaw
+  JIRA_PROJECT_KEY: EP
+  RELEASE_NAME_PREFIX: Backend
 
 jobs:
   build:
@@ -24,23 +27,22 @@ jobs:
         id: parse-release-notes
         run: |
           releaseBody=$(echo '${{ github.event.release.body }}')
-          echo "::set-output name=tickets::$(echo $releaseBody | grep -o 'PB-[0-9]*' | tr '\n' ',')"
-            
-      # Runs a set of commands using the runners shell
+          echo "::set-output name=tickets::$(echo $releaseBody | grep -o '${{ env.JIRA_PROJECT_KEY }}-[0-9]*' | tr '\n' ',')"
+           
       - name: Send ticket numbers to JIRA release
         run: |
-          echo Tickets associated with release
+          echo Sending tickets associated with release:
           echo ${{ steps.parse-release-notes.outputs.tickets }}
           
-          
+      # Creates release in JIRA (if it doesn't exist) and associates tickets with release
       - name: Release Jira Version
         uses: armona/jira-release-actions@v2.0.6
         with:
           email: ${{ secrets.JIRA_EMAIL }}
           api_token: ${{ secrets.JIRA_TOKEN }}
-          subdomain: ryanchristilaw
-          jira_project: PB
-          release_name: ${{ github.event.release.name }}
+          subdomain: ${{ env.JIRA_SUBDOMAIN }}
+          jira_project: ${{ env.JIRA_PROJECT_KEY }}
+          release_name: ${{ env.RELEASE_NAME_PREFIX }} ${{ github.event.release.name }}
           create: 'true'
           release: 'false'
           tickets: ${{ steps.parse-release-notes.outputs.tickets }}
