@@ -34,7 +34,7 @@ jobs:
           
           
       - name: Release Jira Version
-        uses: armona/jira-release-action@latest
+        uses: armona/jira-release-actions@v2.0.6
         with:
           email: ${{ secrets.JIRA_EMAIL }}
           api-token: ${{ secrets.JIRA_TOKEN }}
