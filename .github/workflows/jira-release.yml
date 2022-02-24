@@ -27,7 +27,7 @@ jobs:
         id: parse-release-notes
         run: |
           releaseBody=$(echo '${{ github.event.release.body }}')
-          echo "::set-output name=tickets::$(echo $releaseBody | grep -o '${{ env.JIRA_PROJECT_KEY }}-[1-9]+[0-9]*' | tr '\n' ',')"
+          echo "::set-output name=tickets::$(echo $releaseBody | grep -o '${{ env.JIRA_PROJECT_KEY }}-[1-9][0-9]*' | tr '\n' ',')"
            
       - name: Send ticket numbers to JIRA release
         run: |
