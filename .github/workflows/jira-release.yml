@@ -20,14 +20,25 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 #       - uses: actions/checkout@v2
+
+      # Remove stray " and ' which can mess up the Regex parsing
+      - name: Sanitize Input
+        id: sanitize-release-notes
+        run: | 
+          export CHANGELOG="${{ github.event.release.body }}"
+          CHANGELOG="${CHANGELOG//'%'/'%25'}"
+          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
+          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+          echo "::set-output name=changelog::$(echo "$CHANGELOG")"
         
       # Parse release body for release notes and extract JIRA ticket numbers
       # Search for regex EB-XXXX and then outputs the ticket numbers separated by commas
-      - name: Run a multi-line script
+      - name: Parse release notes for tickets
         id: parse-release-notes
         run: |
-          echo "::set-output name=tickets::$(echo ${{ github.event.release.body }} | tr '\'' '\\'' | tr '\"' '\\"' | grep -o '${{ env.JIRA_PROJECT_KEY }}-[1-9][0-9]*' | tr '\n' ',')"
-           
+          releaseBody=$(echo ${{ github.event.release.body }})
+          echo "::set-output name=tickets::$(echo ${{ steps.sanitize-release-notes.outputs.changelog }} | grep -o '${{ env.JIRA_PROJECT_KEY }}-[1-9][0-9]*' | tr '\n' ',')"
+          
       - name: Send ticket numbers to JIRA release
         run: |
           echo Sending tickets associated with release:
