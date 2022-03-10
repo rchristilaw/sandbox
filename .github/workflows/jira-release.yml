@@ -25,13 +25,15 @@ jobs:
       - name: Sanitize Input
         id: sanitize-release-notes
         run: | 
-          CHANGELOG=$(cat << EOF 
+          CHANGELOG="$(cat << EOF 
           ${{ github.event.release.body }} 
           EOF
-          )
-          CHANGELOG="${CHANGELOG//'%'/'%25'}"
-          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
-          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+          )"
+          CHANGELOG="${CHANGELOG//'%'/'%20'}"
+          CHANGELOG="${CHANGELOG//$'\n'/'%20'}"
+          CHANGELOG="${CHANGELOG//$'\r'/'%20'}"
+          CHANGELOG="${CHANGELOG//$'\''/'%20'}"
+          CHANGELOG="${CHANGELOG//$'\"'/'%20'}"
           echo "::set-output name=changelog::$CHANGELOG"
         
       # Parse release body for release notes and extract JIRA ticket numbers
