@@ -25,7 +25,10 @@ jobs:
       - name: Sanitize Input
         id: sanitize-release-notes
         run: | 
-          CHANGELOG=$(cat << EOF ${{ github.event.release.body }} EOF)
+          CHANGELOG=$(cat << EOF 
+          ${{ github.event.release.body }} 
+          EOF
+          )
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
