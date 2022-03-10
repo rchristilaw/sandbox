@@ -25,11 +25,11 @@ jobs:
       - name: Sanitize Input
         id: sanitize-release-notes
         run: | 
-          export CHANGELOG=${{ github.event.release.body }}
+          CHANGELOG=$(cat << EOF ${{ github.event.release.body }} EOF)
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
-          echo "::set-output name=changelog::$(echo "$CHANGELOG")"
+          echo "::set-output name=changelog::$CHANGELOG"
         
       # Parse release body for release notes and extract JIRA ticket numbers
       # Search for regex EB-XXXX and then outputs the ticket numbers separated by commas
