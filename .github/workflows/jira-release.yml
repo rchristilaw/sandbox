@@ -5,6 +5,8 @@ on:
   # Triggers the workflow on publish of Release in Pre-release state
   release:
     types: [ prereleased ]
+    
+  workflow_dispatch:
 
 
 env:
