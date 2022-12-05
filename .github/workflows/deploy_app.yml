@@ -19,4 +19,7 @@ jobs:
     steps:
       - name: Download release asset
         id: download_asset
-        run: echo "THIS IS A TEST - Deploying to stage AuctionRunner1 from branch ${{ inputs.tagName }}"
+        # run: echo "THIS IS A TEST - Deploying to stage AuctionRunner1 from branch ${{ inputs.tagName }}"
+        run: echo "Input tag = ${{ inputs.tags }}"
+
+
