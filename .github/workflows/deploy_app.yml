@@ -1,0 +1,21 @@
+name: deploy-app
+
+on:
+  # This is a workflow that is manually triggered
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      tagName:
+        description: 'Tag name'
+        required: true
+
+jobs:
+  deploy-single-app:
+    environment: stage
+    runs-on: [self-hosted, eblock]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Download release asset
+        id: download_asset
+        run: echo "THIS IS A TEST - Deploying to stage AuctionRunner1 from branch ${{ inputs.tagName }}"
