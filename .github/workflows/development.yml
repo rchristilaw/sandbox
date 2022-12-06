@@ -1,9 +1,10 @@
-name: build-artifact
+name: development
 
 on:
   push:
     branches:
       - master
+      - 'releases/**'
 
 jobs:
   build:
@@ -13,6 +14,9 @@ jobs:
       - name: Checkout repository
         id: checkout_repository
         uses: actions/checkout@v3
+
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
 
       - name: Draft new release
         id: draft_release
