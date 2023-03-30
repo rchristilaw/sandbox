@@ -1,7 +1,7 @@
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 
-filter-by-commitish: true
+#filter-by-commitish: true
 commitish: production
 
 template: |
