@@ -25,5 +25,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: tags/${{ github.event.release.tag_name }}
-          file: sandbox-SNAPSHOT-1.0.0.jar
-          target: sandbox-SNAPSHOT-1.0.0.jar
+          file: server.jar
+          target: server.jar
