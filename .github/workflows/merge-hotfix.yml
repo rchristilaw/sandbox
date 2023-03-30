@@ -1,0 +1,40 @@
+name: Merge to Release Branch
+
+on:
+  push:
+    branches: [ release_v** ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+        cache: maven
+
+    - name: Draft new release
+      id: draft_release
+      uses: release-drafter/release-drafter@v5.21.0
+      with:
+        config-name: config/release-drafter-hotfix.yml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    - name: Upload assets
+      id: upload_assets
+      run: |
+        gh release upload --clobber ${{ env.VERSION }} ${{ env.FILES }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VERSION: ${{ steps.draft_release.outputs.tag_name }}
+        FILES: |
+          /home/runner/work/sandbox/sandbox/server/target/server-1.0.0-SNAPSHOT.jar
