@@ -37,4 +37,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VERSION: ${{ steps.draft_release.outputs.tag_name }}
         FILES: |
-          /home/runner/work/sandbox/server/target/propsbuddy.jar
+          /home/runner/work/sandbox/sandbox/server/target/server-1.0.0-SNAPSHOT.jar
