@@ -1,9 +1,13 @@
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
+filter-by-commitish: true
+commitish: master
+
+
 template: |
   $CHANGES
 # Changelog definitions
-filter-by-commitish: true
+
 sort-by: 'merged_at'
 sort-direction: 'descending'
 exclude-labels:
