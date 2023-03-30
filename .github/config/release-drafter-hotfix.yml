@@ -1,8 +1,8 @@
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 
-filter-by-commitish: true
-commitish: release_v**
+#filter-by-commitish: true
+#commitish: release_v**
 
 template: |
   ## What’s Changed
