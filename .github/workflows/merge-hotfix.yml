@@ -2,7 +2,7 @@ name: Merge to Release Branch
 
 on:
   push:
-    branches: [ release_v** ]
+    branches: [ production ]
 
 jobs:
   build:

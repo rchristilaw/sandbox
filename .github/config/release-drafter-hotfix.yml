@@ -2,7 +2,7 @@ name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 
 filter-by-commitish: true
-commitish: $HEAD_REF_NAME
+commitish: production
 
 template: |
   ## Hotfix Changes
