@@ -24,10 +24,8 @@ on:
           - NODE1_HOST
           - NODE2_HOST
       tag:
-        type: choice
+        type: string
         description: Tag to deploy
-        options:
-          tags
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
