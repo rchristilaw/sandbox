@@ -11,18 +11,21 @@ on:
         description: Select the app to deploy
         required: true
         options:
+          - eblock-graphql
+          - eblock-scheduler
+          - eblock-netsuite
+          - eblock-auction-runner
+          - eblock-netsuite
+          - eblock-integrations
       node:
         type: choice
         description: Server Node
         options:
-          - NODE_1
-          - NODE_2
+          - NODE1_HOST
+          - NODE2_HOST
       tag:
-        type: choice
+        type: string
         description: Tag to deploy
-        options:
-          - v1.9.0
-          - v1.9.1
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
