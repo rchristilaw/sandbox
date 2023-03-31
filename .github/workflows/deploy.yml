@@ -40,4 +40,4 @@ jobs:
           echo "BRANCH_NAME=release_${minor_version_name}" >> $GITHUB_OUTPUT
 
       - name: Create release branch
-        run: git checkout -b release_${{ steps.release_branch.BRANCH_NAME }} && git push origin release_${{ github.event.release.tag_name }}
+        run: git checkout -b release_${{ steps.release_branch.BRANCH_NAME }} && git push origin release_${{ steps.release_branch.BRANCH_NAME }}
