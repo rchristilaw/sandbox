@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       application:
+        description: Application to deploy
         type: choice
-        description: Select the app to deploy
         required: true
         options:
           - eblock-graphql
@@ -17,17 +17,17 @@ on:
           - eblock-auction-runner
           - eblock-netsuite
           - eblock-integrations
-      node:
-        type: choice
-        description: Server Node
-        options:
-          - NODE1_HOST
-          - NODE2_HOST
       tag:
-        required: true
         description: Tag to deploy
-        type: choice
-        options: ${{ github.ref.tags }}
+        type: string
+        required: true
+      node:
+          description: Destination server node
+          type: choice
+          required: true
+          options:
+            - NODE1_HOST
+            - NODE2_HOST
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:

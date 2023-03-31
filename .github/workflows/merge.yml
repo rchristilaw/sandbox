@@ -38,3 +38,6 @@ jobs:
         VERSION: ${{ steps.draft_release.outputs.tag_name }}
         FILES: |
           /home/runner/work/sandbox/sandbox/server/target/server.jar
+
+    - name: create pull request
+      run: git checkout -b release_${{ steps.draft_release.outputs.tag_name }} && git push origin release_${{ steps.draft_release.outputs.tag_name }}
