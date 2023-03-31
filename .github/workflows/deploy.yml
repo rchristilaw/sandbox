@@ -27,3 +27,6 @@ jobs:
           version: tags/${{ github.event.release.tag_name }}
           file: server.jar
           target: server.jar
+
+      - name: create pull request
+        run: git checkout -b release_${{ steps.draft_release.outputs.tag_name }} && git push origin release_${{ steps.draft_release.outputs.tag_name }}
