@@ -32,5 +32,12 @@ jobs:
         id: checkout_repository
         uses: actions/checkout@v3
 
+      - name: Set release branch name
+        id: release_branch
+        run: |
+          tag_name=${{ github.event.release.tag_name }}
+          minor_version_name=${tag_name/.0/}
+          echo "BRANCH_NAME=release_${minor_version_name}" >> $GITHUB_OUTPUT
+
       - name: Create release branch
-        run: git checkout -b release_${{ github.event.release.tag_name }} && git push origin release_${{ github.event.release.tag_name }}
+        run: git checkout -b release_${{ steps.release_branch.BRANCH_NAME }} && git push origin release_${{ github.event.release.tag_name }}
