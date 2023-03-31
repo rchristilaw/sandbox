@@ -28,5 +28,9 @@ jobs:
           file: server.jar
           target: server.jar
 
-      - name: create pull request
+      - name: Checkout repository
+        id: checkout_repository
+        uses: actions/checkout@v3
+
+      - name: Create release branch
         run: git checkout -b release_${{ github.event.release.tag_name }} && git push origin release_${{ github.event.release.tag_name }}
