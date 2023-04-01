@@ -1,6 +1,14 @@
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 
+autolabeler:
+  - label: 'hotfix'
+    branch:
+      - 'release_v**'
+
+include-labels:
+  - 'hotfix'
+
 template: |
   ## Hotfix Changes
   
@@ -9,8 +17,6 @@ template: |
 
 sort-by: 'merged_at'
 sort-direction: 'descending'
-exclude-labels:
-  - 'changelog/exclude'
 
 # Change definitions
 no-changes-template: "* No changes"
