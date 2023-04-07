@@ -13,7 +13,6 @@ template: |
   ## Hotfix Changes
   
   $CHANGES
-# Changelog definitions
 
 sort-by: 'merged_at'
 sort-direction: 'descending'
