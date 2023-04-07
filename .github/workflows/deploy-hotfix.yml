@@ -29,7 +29,7 @@ on:
             - NODE1_HOST
             - NODE2_HOST
 
-run-name: Deployed ${{ inputs.application }} ${{ inputs.tag }} to ${{ inputs.node }} by @${{ github.actor }}
+run-name: ${{ inputs.tag }} - ${{ inputs.application }} (${{ inputs.node }})
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
